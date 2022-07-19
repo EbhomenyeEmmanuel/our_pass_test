@@ -14,5 +14,6 @@ class CustomEmailTextField extends CustomTextField {
             title: "Email",
             hint: 'johndoe@mail.com',
             validator: Utils.validateEmail,
+            keyboardType: TextInputType.emailAddress,
             enabled: isEnabled);
 }
