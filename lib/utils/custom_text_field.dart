@@ -27,7 +27,7 @@ class CustomTextField extends StatelessWidget {
       this.textEditingController,
       this.autofocus = false,
       this.isImportantField = false,
-      this.keyboardType = TextInputType.number,
+      this.keyboardType = TextInputType.text,
       this.lines = 1,
       this.errorText,
       this.onChange,
