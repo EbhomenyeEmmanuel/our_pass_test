@@ -14,12 +14,12 @@ class LoginProvider extends ChangeNotifier {
   final loginData = LoginData();
 
   void setEmail(String value) {
-    loginData.email;
+    loginData.email = value;
     notifyListeners();
   }
 
   void setPassword(String value) {
-    loginData.password;
+    loginData.password = value;
     notifyListeners();
   }
 
