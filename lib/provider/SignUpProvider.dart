@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:our_pass_test/models/login_data.dart';
+import 'package:our_pass_test/models/signup_data.dart';
 
-class LoginProvider extends ChangeNotifier {
+class SignUpProvider extends ChangeNotifier {
   var _isLoading = false;
 
   void setIsLoading(bool value) {
@@ -11,15 +11,20 @@ class LoginProvider extends ChangeNotifier {
 
   bool isLoading() => _isLoading;
 
-  final loginData = LoginData();
+  final signUpData = SignUpData();
 
   void setEmail(String value) {
-    loginData.email;
+    signUpData.email = value;
     notifyListeners();
   }
 
   void setPassword(String value) {
-    loginData.password;
+    signUpData.password = value;
+    notifyListeners();
+  }
+
+  void setUsername(String value) {
+    signUpData.username = value;
     notifyListeners();
   }
 
@@ -30,8 +35,7 @@ class LoginProvider extends ChangeNotifier {
     final FormState? form = formKey.currentState;
     if (form == null) return;
     if (!form.validate()) {
-      autoValidateMode = AutovalidateMode
-          .onUserInteraction; // Start validating on every change.
+      autoValidateMode = AutovalidateMode.onUserInteraction; // Start validating on every change.
       notifyListeners();
     } else {
       form.save();
