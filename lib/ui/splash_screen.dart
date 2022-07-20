@@ -8,7 +8,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-          future: Future.delayed(const Duration(seconds: 1)),
+          future: Future.delayed(const Duration(seconds: 3)),
           builder: (context, timer) =>
               timer.connectionState == ConnectionState.done
                   ? const SignUpScreen()
