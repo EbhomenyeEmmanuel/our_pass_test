@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
         key: loginProvider.formKey,
         autovalidateMode: loginProvider.autoValidateMode,
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 40),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

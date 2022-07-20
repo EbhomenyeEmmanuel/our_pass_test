@@ -1,7 +1,31 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:our_pass_test/models/login_data.dart';
+import 'package:our_pass_test/provider/ui_manager.dart';
+
+import '../data/firebase/auth_repository.dart';
+import '../data/models/login_data.dart';
 
 class LoginProvider extends ChangeNotifier {
+  final IAuthRepository _authRepository;
+
+  LoginProvider({required IAuthRepository authRepository})
+      : _authRepository = authRepository;
+
+  late UiManager? uiManager;
+
+  void update(UiManager uiManager) {
+    this.uiManager = uiManager;
+  }
+
+  var _isEmailVerified = false;
+
+  void setIsEmailVerified(bool value) {
+    _isEmailVerified = value;
+    notifyListeners();
+  }
+
+  bool get isEmailVerified => _isEmailVerified;
+
   var _isLoading = false;
 
   void setIsLoading(bool value) {
@@ -37,8 +61,27 @@ class LoginProvider extends ChangeNotifier {
       form.save();
       setIsLoading(true);
       await Future.delayed(const Duration(seconds: 5));
-      setIsLoading(false);
+      _signIn(loginData.email!, loginData.password!);
       // Navigate to Success Dialog
+    }
+  }
+
+  void _signIn(String email, String password) async {
+    final value = await _authRepository.signIn(email, password);
+    print("Value is $value");
+    setIsLoading(false);
+    value.fold((l) => _onError(l.message), (r) => _onSuccessful(r));
+  }
+
+  void _onError(String msg) {
+    setIsEmailVerified(false);
+  }
+
+  void _onSuccessful(UserCredential userCredential) {
+    setIsEmailVerified(true);
+
+    if (isEmailVerified) {
+      uiManager?.goToMainScreen();
     }
   }
 }

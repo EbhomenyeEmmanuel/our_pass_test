@@ -11,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final signUpProvider = Provider.of<SignUpProvider>(context);
+    final SignUpProvider signUpProvider = Provider.of<SignUpProvider>(context);
 
     return Scaffold(
       body: Form(
@@ -19,7 +19,7 @@ class SignUpScreen extends StatelessWidget {
         autovalidateMode: signUpProvider.autoValidateMode,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 40),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
