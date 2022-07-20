@@ -19,6 +19,15 @@ class SignUpProvider extends ChangeNotifier {
 
   bool get isSignUpSuccessful => _isSignUpSuccessful;
 
+  String _errorMessage = "";
+
+  void resetErrorMessage() {
+    _errorMessage = "";
+    notifyListeners();
+  }
+
+  String get errorMessage => _errorMessage;
+
   var _isLoading = false;
 
   void setIsLoading(bool value) {
@@ -70,9 +79,13 @@ class SignUpProvider extends ChangeNotifier {
     value.fold((l) => _onError(l.message), (r) => _onSuccessful(r));
   }
 
-  void _onError(String msg) {}
+  void _onError(String msg) {
+    _errorMessage = msg;
+    notifyListeners();
+  }
 
   void _onSuccessful(UserCredential userCredential) {
     setIsSignUpSuccessful(true);
+    resetErrorMessage();
   }
 }

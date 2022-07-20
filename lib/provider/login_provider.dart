@@ -49,6 +49,15 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  String _errorMessage = "";
+
+  void resetErrorMessage() {
+    _errorMessage = "";
+    notifyListeners();
+  }
+
+  String get errorMessage => _errorMessage;
+
   var formKey = GlobalKey<FormState>();
   var autoValidateMode = AutovalidateMode.disabled;
 
@@ -77,10 +86,13 @@ class LoginProvider extends ChangeNotifier {
 
   void _onError(String msg) {
     setIsEmailVerified(false);
+    _errorMessage = msg;
+    notifyListeners();
   }
 
   void _onSuccessful(UserCredential userCredential) {
     setIsLoginSuccessful(true);
     setIsEmailVerified(true);
+    resetErrorMessage();
   }
 }

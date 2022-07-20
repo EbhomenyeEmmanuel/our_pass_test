@@ -19,7 +19,7 @@ class AuthRepository implements IAuthRepository {
   Future<Either<Failure, UserCredential>> signIn(
       String email, String password) async {
     return safeNetworkResult(() async {
-      return await auth.createUserWithEmailAndPassword(
+      return await auth.signInWithEmailAndPassword(
           email: email, password: password);
     });
   }
@@ -28,7 +28,7 @@ class AuthRepository implements IAuthRepository {
   Future<Either<Failure, UserCredential>> signUp(
       String email, String password) async {
     return safeNetworkResult(() async {
-      return await auth.signInWithEmailAndPassword(
+      return await auth.createUserWithEmailAndPassword(
           email: email, password: password);
     });
   }

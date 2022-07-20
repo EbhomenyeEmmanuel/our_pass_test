@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../utils/custom_password_text_field.dart';
 import '../../utils/pallete.dart';
+import '../components/snack_bar.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -21,54 +22,61 @@ class LoginScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      body: Form(
-        key: loginProvider.formKey,
-        autovalidateMode: loginProvider.autoValidateMode,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 40),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  "Login",
-                  style: TextStyle(
-                      color: Palette.mainTextColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomEmailTextField(
+      body: Stack(children: [
+        Form(
+          key: loginProvider.formKey,
+          autovalidateMode: loginProvider.autoValidateMode,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 40),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Login",
+                    style: TextStyle(
+                        color: Palette.mainTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomEmailTextField(
+                      onChange: (value) {
+                        loginProvider.setEmail(value);
+                      },
+                      isEnabled: !loginProvider.isLoading()),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomPasswordTextField(
                     onChange: (value) {
-                      loginProvider.setEmail(value);
+                      loginProvider.setPassword(value);
                     },
-                    isEnabled: !loginProvider.isLoading()),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomPasswordTextField(
-                  onChange: (value) {
-                    loginProvider.setPassword(value);
-                  },
-                  isEnabled: !loginProvider.isLoading(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                OurPassButton(
-                    onPressed: () {
-                      loginProvider.validateInputs();
-                    },
-                    buttonText: "Login",
-                    isLoading: loginProvider.isLoading()),
-              ],
+                    isEnabled: !loginProvider.isLoading(),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  OurPassButton(
+                      onPressed: () {
+                        loginProvider.validateInputs();
+                      },
+                      buttonText: "Login",
+                      isLoading: loginProvider.isLoading()),
+                ],
+              ),
             ),
           ),
         ),
-      ),
+        SnackBarLauncher(
+            error: loginProvider.errorMessage,
+            onErrorShown: () {
+              loginProvider.resetErrorMessage();
+            }),
+      ]),
     );
   }
 }
