@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "846773365394",
+    "project_id": "ourpasstest",
+    "storage_bucket": "ourpasstest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846773365394:android:8cc65468f92e3aba45144b",
+        "android_client_info": {
+          "package_name": "com.example.our_pass_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846773365394-4mfp0krnak0i68h3iqrudfrd1tbfjr08.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQFzL1QxH5R57WXAdMBtJb7n2LtAZcjB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846773365394-4mfp0krnak0i68h3iqrudfrd1tbfjr08.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
