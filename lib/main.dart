@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:our_pass_test/injector.dart';
 import 'package:our_pass_test/provider/SignUpProvider.dart';
 import 'package:our_pass_test/provider/login_provider.dart';
-import 'package:our_pass_test/provider/ui_manager.dart';
 import 'package:our_pass_test/ui/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -22,18 +21,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<UiManager>(create: (context) => locator()),
-        ChangeNotifierProxyProvider<UiManager, SignUpProvider>(
+        ChangeNotifierProvider<SignUpProvider>(
           create: (context) => locator(),
-          update: (BuildContext context, uiManager,
-                  SignUpProvider? signUpProvider) =>
-              signUpProvider!..update(uiManager),
         ),
-        ChangeNotifierProxyProvider<UiManager, LoginProvider>(
+        ChangeNotifierProvider<LoginProvider>(
           create: (context) => locator(),
-          update:
-              (BuildContext context, uiManager, LoginProvider? loginProvider) =>
-                  loginProvider!..update(uiManager),
         ),
       ],
       child: MaterialApp(

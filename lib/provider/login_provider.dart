@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:our_pass_test/provider/ui_manager.dart';
 
 import '../data/firebase/auth_repository.dart';
 import '../data/models/login_data.dart';
@@ -11,12 +10,6 @@ class LoginProvider extends ChangeNotifier {
   LoginProvider({required IAuthRepository authRepository})
       : _authRepository = authRepository;
 
-  late UiManager? uiManager;
-
-  void update(UiManager uiManager) {
-    this.uiManager = uiManager;
-  }
-
   var _isEmailVerified = false;
 
   void setIsEmailVerified(bool value) {
@@ -25,6 +18,15 @@ class LoginProvider extends ChangeNotifier {
   }
 
   bool get isEmailVerified => _isEmailVerified;
+
+  var _isLoginSuccessful = false;
+
+  void setIsLoginSuccessful(bool value) {
+    _isLoginSuccessful = value;
+    notifyListeners();
+  }
+
+  bool get isLoginSuccessful => _isLoginSuccessful;
 
   var _isLoading = false;
 
@@ -78,10 +80,7 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void _onSuccessful(UserCredential userCredential) {
+    setIsLoginSuccessful(true);
     setIsEmailVerified(true);
-
-    if (isEmailVerified) {
-      uiManager?.goToMainScreen();
-    }
   }
 }

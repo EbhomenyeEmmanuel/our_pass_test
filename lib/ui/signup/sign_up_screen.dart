@@ -13,6 +13,11 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final SignUpProvider signUpProvider = Provider.of<SignUpProvider>(context);
 
+    if (signUpProvider.isSignUpSuccessful) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const Expanded(child: LoginScreen());
+      }));
+    }
     return Scaffold(
       body: Form(
         key: signUpProvider.formKey,

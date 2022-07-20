@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:our_pass_test/provider/login_provider.dart';
+import 'package:our_pass_test/ui/home/home.dart';
 import 'package:our_pass_test/utils/custom_email_text_field.dart';
 import 'package:our_pass_test/utils/our_pass_button.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,12 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context);
+    if (loginProvider.isEmailVerified && loginProvider.isLoginSuccessful) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const Expanded(child: Home());
+      }));
+    }
+
     return Scaffold(
       body: Form(
         key: loginProvider.formKey,

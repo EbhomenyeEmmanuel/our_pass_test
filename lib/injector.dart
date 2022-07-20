@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:our_pass_test/data/firebase/auth_repository.dart';
 import 'package:our_pass_test/provider/SignUpProvider.dart';
 import 'package:our_pass_test/provider/login_provider.dart';
-import 'package:our_pass_test/provider/ui_manager.dart';
 
 final GetIt locator = GetIt.instance;
 
@@ -19,10 +18,6 @@ Future<void> initLocator() async {
 
   locator.registerSingleton<SignUpProvider>(
     SignUpProvider(authRepository: locator()),
-  );
-
-  locator.registerSingleton<UiManager>(
-    UiManager(),
   );
 }
 
