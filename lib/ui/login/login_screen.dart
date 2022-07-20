@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:our_pass_test/provider/LoginProvider.dart';
+import 'package:our_pass_test/provider/login_provider.dart';
 import 'package:our_pass_test/utils/custom_email_text_field.dart';
 import 'package:our_pass_test/utils/our_pass_button.dart';
 import 'package:provider/provider.dart';

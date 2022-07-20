@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:our_pass_test/provider/LoginProvider.dart';
+import 'package:our_pass_test/provider/login_provider.dart';
 import 'package:our_pass_test/ui/splash_screen.dart';
 import 'package:provider/provider.dart';
 
