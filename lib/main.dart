@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:our_pass_test/provider/LoginProvider.dart';
 import 'package:our_pass_test/ui/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(providers: [
+        ChangeNotifierProvider(create: (context) => LoginProvider())
+      ],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
