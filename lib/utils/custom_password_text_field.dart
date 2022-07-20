@@ -14,5 +14,6 @@ class CustomPasswordTextField extends CustomTextField {
       title: "Password",
       hint: '123456',
       validator: Utils.validatePassword,
+      isImportantField: true,
       enabled: isEnabled);
 }
