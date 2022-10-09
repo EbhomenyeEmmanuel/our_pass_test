@@ -1,6 +1,6 @@
 class LoginData {
-  String? email;
-  String? password;
+  late String? email;
+  late String? password;
 
   LoginData({this.email, this.password});
 }

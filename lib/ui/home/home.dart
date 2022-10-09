@@ -5,11 +5,14 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "Welcome",
-        style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+    return Container(
+      color: Colors.white,
+      child: const Center(
+        child: Text(
+          "Welcome",
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+        ),
       ),
     );
   }
