@@ -16,9 +16,11 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginProvider>(context);
     if (loginProvider.isEmailVerified && loginProvider.isLoginSuccessful) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const Expanded(child: Home());
-      }));
+      WidgetsBinding.instance?.addPostFrameCallback((_) => {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const Expanded(child: Home());
+            }))
+          });
     }
 
     return Scaffold(
